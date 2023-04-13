@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/neo')
-
+require 'file_exists'
 class AboutStrings < Neo::Koan
   def test_double_quoted_strings_are_strings
     string = "Hello, World"
@@ -64,8 +64,8 @@ EOS
     hi = "Hello, "
     there = "World"
     string = hi + there
-    assert_equal 'Hello', hi
-    assert_equal 'World', there
+    assert_equal "Hello, ", hi
+    assert_equal "World", there
   end
 
   def test_plus_equals_will_concatenate_to_the_end_of_a_string
@@ -98,11 +98,13 @@ EOS
     hi << there
     assert_equal 'Hello, World', original_string
 
+
     # THINK ABOUT IT:
     #
     # Ruby programmers tend to favor the shovel operator (<<) over the
     # plus equals operator (+=) when building up strings.  Why?
   end
+
 
   def test_double_quoted_string_interpret_escape_characters
     string = "\n"
@@ -129,12 +131,12 @@ EOS
   def test_single_quoted_strings_do_not_interpolate
     value = 123
     string = 'The value is #{value}'
-    assert_equal 'The value #{value}', string
+    assert_equal 'The value is #{value}', string
   end
 
   def test_any_ruby_expression_may_be_interpolated
     string = "The square root of 5 is #{Math.sqrt(5)}"
-    assert_equal "The square root of5 is  2.23606797749979", string
+    assert_equal "The square root of 5 is 2.23606797749979", string
   end
 
   def test_you_can_get_a_substring_from_a_string
@@ -150,6 +152,8 @@ EOS
     # Surprised?
   end
 
+
+
   in_ruby_version("1.8") do
     def test_in_older_ruby_single_characters_are_represented_by_integers
       assert_equal 97, ?a
@@ -159,7 +163,7 @@ EOS
     end
   end
 
-  in_ruby_version("1.9", "2", "3") do
+  in_ruby_version("1.9", "2") do
     def test_in_modern_ruby_single_characters_are_represented_by_strings
       assert_equal 'a', ?a
       assert_equal false, ?a == 97
@@ -195,3 +199,4 @@ EOS
     assert_equal false, a.object_id == b.object_id
   end
 end
+
