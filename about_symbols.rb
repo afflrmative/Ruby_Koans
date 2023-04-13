@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/neo')
-
+require 'file_exists'
 class AboutSymbols < Neo::Koan
   def test_symbols_are_symbols
     symbol = :ruby
