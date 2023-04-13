@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/neo')
-
+require 'file_exists'
 class AboutToStr < Neo::Koan
 
   class CanNotBeTreatedAsString
