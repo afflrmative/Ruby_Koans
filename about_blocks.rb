@@ -1,4 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/neo')
+require 'file_exists'
 
 class AboutBlocks < Neo::Koan
   def method_with_block
@@ -24,7 +25,7 @@ class AboutBlocks < Neo::Koan
 
   def test_blocks_can_take_arguments
     method_with_block_arguments do |argument|
-      assert_equal Jim, argument
+      assert_equal 'Jim', argument
     end
   end
 
@@ -94,3 +95,4 @@ class AboutBlocks < Neo::Koan
   end
 
 end
+
